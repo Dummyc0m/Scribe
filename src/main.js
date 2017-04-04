@@ -8,6 +8,7 @@ import Router from 'vue-router'
 import routerOptions from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
+import 'element-ui/lib/theme-default/index.css'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
 
