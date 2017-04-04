@@ -2,9 +2,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
 import Vuex from 'vuex'
 import storeOptions from './vuex/store'
+import Router from 'vue-router'
+import routerOptions from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
 import ElementUI from 'element-ui'
@@ -20,7 +21,10 @@ const axiosInstance = axios.create({
 Vue.use(VueAxios, axiosInstance)
 
 Vue.use(Vuex)
-Vuex.Store(storeOptions)
+const store = new Vuex.Store(storeOptions)
+
+Vue.use(Router)
+const router = new Router(routerOptions)
 
 Vue.use(ElementUI, {locale})
 
@@ -30,6 +34,7 @@ Vue.config.productionTip = false
 new Vue({
     el: '#app',
     router,
+    store,
     template: '<App/>',
     components: {App}
 })
