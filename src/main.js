@@ -8,9 +8,8 @@ import Router from 'vue-router'
 import routerOptions from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
-import 'element-ui/lib/theme-default/index.css'
-import ElementUI from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/en'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
 
 const axiosInstance = axios.create({
     baseURL: `http://jsonplaceholder.typicode.com/`,
@@ -27,7 +26,7 @@ const store = new Vuex.Store(storeOptions)
 Vue.use(Router)
 const router = new Router(routerOptions)
 
-Vue.use(ElementUI, {locale})
+Vue.use(iView)
 
 Vue.config.productionTip = false
 
@@ -40,4 +39,3 @@ new Vue({
     components: {App}
 })
 
-// include element-ui elements http://element.eleme.io/#/en-US/component/quickstart
