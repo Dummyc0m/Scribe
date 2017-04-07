@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.16.0",
     "iview": "^2.0.0-rc.9",
+    "moment": "^2.18.1",
     "vue": "^2.2.2",
     "vue-axios": "^2.0.1",
     "vue-router": "^2.2.0",

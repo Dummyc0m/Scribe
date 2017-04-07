@@ -3,18 +3,21 @@
  */
 
 <style scoped>
-
+    .login-panel {
+        padding: 20px 20px 0 20px;
+        text-align: center;
+    }
 </style>
 
 <template>
-    <login-panel></login-panel>
+    <login-panel class="login-panel"></login-panel>
 </template>
 
 <script>
     import LoginPanel from './login/LoginPanel'
 
     export default {
-        components: {LoginPanel}
+        components: { LoginPanel }
     }
 </script>
 
