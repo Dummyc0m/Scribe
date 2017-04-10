@@ -20,11 +20,13 @@
     export default {
         created () {
             const self = this
-            window.setTimeout(() => {
-                self.$router.push({
-                    name: 'root'
-                })
-            }, 2000)
+            this.$store.dispatch('signOut').then(() => {
+                window.setTimeout(() => {
+                    self.$router.push({
+                        name: 'root'
+                    })
+                }, 1000)
+            })
         }
     }
 </script>

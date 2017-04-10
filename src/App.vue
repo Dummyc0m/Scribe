@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <layout>
-            <nav-bar username="dummy" slot="header" @select="onNavSelect"></nav-bar>
+            <nav-bar :username="name" slot="header" @select="onNavSelect"></nav-bar>
             <div slot="body">
                 <transition name="opacity" mode="out-in">
                     <router-view></router-view>
@@ -26,6 +26,12 @@
                 this.$router.push({
                     name: selected
                 })
+            }
+        },
+        computed: {
+            name () {
+                const userToken = this.$store.getters.userToken
+                return userToken ? userToken.user.email.split('@')[0] : undefined
             }
         }
     }

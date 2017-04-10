@@ -1,18 +1,33 @@
 {
-  "presets": [
-    ["env", { "modules": false }],
-    "stage-2"
-  ],
-  "plugins": ["transform-runtime", "syntax-async-functions",
-    ["fast-async",{
-      "runtimePattern":"auth\\.js"
-    }]
-  ],
-  "comments": false,
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"],
-      "plugins": [ "istanbul" ]
+    "presets": [
+        [
+            "env",
+            {
+                "modules": false
+            }
+        ],
+        "stage-2"
+    ],
+    "plugins": [
+        "transform-runtime",
+        "syntax-async-functions",
+        [
+            "fast-async",
+            {
+                "runtimePattern": "auth\\.js"
+            }
+        ]
+    ],
+    "comments": false,
+    "env": {
+        "test": {
+            "presets": [
+                "env",
+                "stage-2"
+            ],
+            "plugins": [
+                "istanbul"
+            ]
+        }
     }
-  }
 }

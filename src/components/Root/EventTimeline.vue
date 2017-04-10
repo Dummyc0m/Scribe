@@ -11,10 +11,10 @@
 
 <template>
     <Timeline>
-        <Timeline-item v-for="item in timeline" :key="item.id">
+        <Timeline-item v-for="item in timeline" :key="item.eventId">
             <p class="time">{{ format(item.time) }}</p>
             <Card :bordered="false">
-                <p slot="title">{{ item.title }}</p>
+                <p slot="title">{{ item.name }}</p>
                 <p>{{ item.description }}</p>
             </Card>
         </Timeline-item>
@@ -35,7 +35,7 @@
         },
         methods: {
             format (time) {
-                return moment.unix(time).format('ddd MMM Do YYYY, h:mm a')
+                return moment(time).format('ddd MMM Do YYYY, h:mm a')
             }
         }
     }

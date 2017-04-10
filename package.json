@@ -2,7 +2,7 @@
   "name": "scribe",
   "version": "1.0.0",
   "description": "It records things",
-  "author": "DE_DZ_TBH <peiqial@outlook.com>",
+  "author": "dummyc0m <this@dummyc0m.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

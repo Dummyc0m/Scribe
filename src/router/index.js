@@ -1,16 +1,26 @@
-import RootView from '@/components/RootView'
+import TimelineView from '@/components/TimelineView'
 import LoginView from '@/components/LoginView'
 import PastEventView from '@/components/PastEventView'
 import PasswordChangeView from '@/components/PasswordChangeView'
 import SignOutView from '@/components/SignOutView'
 
 export default {
-    scrollBehavior: () => ({ y: 0 }),
+    // scrollBehavior: () => ({ y: 0 }),
     routes: [
         {
             path: '/',
             name: 'root',
-            component: RootView
+            redirect: {
+                name: 'timeline',
+                params: {
+                    page: 0
+                }
+            }
+        },
+        {
+            path: '/timeline/:page',
+            name: 'timeline',
+            component: TimelineView
         },
         {
             path: '/login',

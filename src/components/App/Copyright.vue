@@ -11,7 +11,7 @@
 </style>
 
 <template>
-    <div class="footer">AOF</div>
+    <div class="footer">Created By Yaotian Feng, Peiqi Liu, and Yuanchu Xie</div>
 </template>
 
 <script>
