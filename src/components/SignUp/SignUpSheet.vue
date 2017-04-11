@@ -28,7 +28,7 @@
                 <Form-item :prop="String(group.id)">
                     <Radio-group :value="form[group.id]" @input="handleInput(group.id, $event)">
                         <Radio class="full-width" v-for="event in group.events" :key="event.id" :label="event.id">{{ event.name }}</Radio>
-                        <Radio :label="-1">None</Radio>
+                        <Radio label="-1">None</Radio>
                     </Radio-group>
                 </Form-item>
             </Card>
@@ -58,6 +58,7 @@
         methods: {
             handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
+                    // note the invalid one has -1
                     this.$emit('submit', { valid, form: this.form })
                 })
             },

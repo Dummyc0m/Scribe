@@ -4,7 +4,7 @@
 
 <style scoped>
     .time-line {
-        padding: 10px;
+        padding: 0 10px 0 10px;
     }
     .center {
         text-align: center;

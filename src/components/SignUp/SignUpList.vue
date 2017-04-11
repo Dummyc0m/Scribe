@@ -3,7 +3,6 @@
  */
 
 <style scoped>
-
 </style>
 
 <template>
