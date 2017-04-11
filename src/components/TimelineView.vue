@@ -85,7 +85,6 @@
                 if (this.$store.getters.authenticated) {
                     await this.$store.dispatch('refreshOpenSignUpSheets')
                 }
-                this.$el.scrollTop = 0
             },
             prev () {
                 this.$router.push({

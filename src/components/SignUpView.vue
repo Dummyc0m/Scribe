@@ -40,14 +40,21 @@
                 'refreshOpenSignUpSheets'
             ]),
             onSubmit (result) {
-                const self = this
-                this.$Message.success('Saved', 4, () => {
-                    self.$Message.success('You may change it before the deadline', 4)
-                })
-                console.log(JSON.stringify(result.form))
-                this.$router.push({
-                    name: 'root'
-                })
+                if (result.valid) {
+                    const self = this
+                    console.log(JSON.stringify({
+                        id: this.sheet.id,
+                        sheet: result.form
+                    }))
+                    this.$Message.success('Saved', 2, () => {
+                        self.$Message.success('You may change it before the deadline', 3)
+                    })
+                    this.$router.push({
+                        name: 'root'
+                    })
+                } else {
+                    this.$Message.error('Please complete the sheet')
+                }
             }
         },
         created () {
