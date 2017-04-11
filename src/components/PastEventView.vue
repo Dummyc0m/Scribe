@@ -4,7 +4,7 @@
 
 <style scoped>
     .event-panel {
-        padding: 20px 20px 0 20px;
+        padding: 10px 10px 0 10px;
     }
 </style>
 

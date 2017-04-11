@@ -1,11 +1,21 @@
-import TimelineView from '@/components/TimelineView'
-import LoginView from '@/components/LoginView'
-import PastEventView from '@/components/PastEventView'
-import PasswordChangeView from '@/components/PasswordChangeView'
-import SignOutView from '@/components/SignOutView'
+const TimelineView = resolve => require([ '@/components/TimelineView' ], resolve)
+const LoginView = resolve => require([ '@/components/LoginView' ], resolve)
+const PastEventView = resolve => require([ '@/components/PastEventView' ], resolve)
+const PasswordChangeView = resolve => require([ '@/components/PasswordChangeView' ], resolve)
+const SignOutView = resolve => require([ '@/components/SignOutView' ], resolve)
+const SignUpListView = resolve => require([ '@/components/SignUpListView' ], resolve)
+const SignUpView = resolve => require([ '@/components/SignUpView' ], resolve)
+import iView from 'iview'
 
 export default {
     // scrollBehavior: () => ({ y: 0 }),
+    beforeEach (to, from, next) {
+        iView.LoadingBar.start()
+        next()
+    },
+    afterEach (to, from, next) {
+        iView.LoadingBar.finish()
+    },
     routes: [
         {
             path: '/',
@@ -41,6 +51,16 @@ export default {
             path: '/sign_out',
             name: 'sign_out',
             component: SignOutView
+        },
+        {
+            path: '/sign_up_list',
+            name: 'sign_up_list',
+            component: SignUpListView
+        },
+        {
+            path: '/sign_up/:id',
+            name: 'sign_up',
+            component: SignUpView
         }
     ]
 }

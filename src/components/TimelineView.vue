@@ -4,7 +4,7 @@
 
 <style scoped>
     .time-line {
-        padding: 20px 20px 0 20px;
+        padding: 10px;
     }
     .center {
         text-align: center;
@@ -14,7 +14,7 @@
 
 <template>
     <div>
-        <sign-up-notify v-if="signUpOpen"></sign-up-notify>
+        <sign-up-notify v-if="openSignUpSheets.length !== 0" @click.native="onSignUpNotifyClick"></sign-up-notify>
         <div class="center">
             <Button v-if="!currentPage.first" type="primary" :loading="eventLoading" @click="prev">
                 <span v-if="!eventLoading">Previous Page</span>
@@ -41,7 +41,6 @@
         components: { EventTimeline, SignUpNotify },
         data () {
             return {
-                signUpOpen: true
                 // ,
 //                timeline: [
 //                    {
@@ -79,7 +78,8 @@
         },
         methods: {
             async updateEvents (page) {
-                await this.$store.dispatch('refreshEventPage', { page, size: 10 })
+                await this.$store.dispatch('refreshEventPage', { page, size: 8 })
+                await this.$store.dispatch('refreshOpenSignUpSheets')
                 this.$el.scrollTop = 0
             },
             prev () {
@@ -97,12 +97,18 @@
                         page: this.currentPage.last ? this.page : (this.page + 1)
                     }
                 })
+            },
+            onSignUpNotifyClick () {
+                this.$router.push({
+                    name: 'sign_up_list'
+                })
             }
         },
         computed: {
             ...mapGetters([
                 'currentPage',
-                'eventLoading'
+                'eventLoading',
+                'openSignUpSheets'
             ]),
             page () {
                 return Number(this.$route.params.page)

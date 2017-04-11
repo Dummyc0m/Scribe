@@ -7,7 +7,7 @@
 
 <style scoped>
     .login-panel {
-        padding: 20px 20px 0 20px;
+        padding: 10px 10px 0 10px;
         text-align: center;
     }
 </style>

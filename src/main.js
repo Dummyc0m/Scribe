@@ -6,33 +6,29 @@ import Vuex from 'vuex'
 import storeOptions from './vuex/store'
 import Router from 'vue-router'
 import routerOptions from './router'
-import VueAxios from 'vue-axios'
 import axios from 'axios'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
 export const http = axios.create({
-    baseURL: `http://hn2.guardiantech.com.cn:10493/`,
+    baseURL: process.env.SERVER_URL,
     headers: {
         Authorization: ''
     },
     transformRequest: [data => {
-        // Vue.$Loading.start()
+        iView.LoadingBar.start()
         return data ? Object.keys(data).map(key => {
             return {key: key, value: data[key]}
         }).reduce((formData, entry) => {
             formData.append(entry.key, entry.value)
             return formData
         }, new FormData()) : data
-    }
-    ],
-    transformResponse: [function (data) {
-        // Vue.$Loading.finish()
+    }],
+    transformResponse: [data => {
+        iView.LoadingBar.finish()
         return JSON.parse(data)
     }]
 })
-
-Vue.use(VueAxios, http)
 
 Vue.use(Vuex)
 const store = new Vuex.Store(storeOptions)

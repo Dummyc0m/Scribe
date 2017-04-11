@@ -10,6 +10,6 @@ export default {
      * @returns {Promise.<void>} List[SignUpSheet]
      */
     async listOpenSheet () {
-        return ((await http.get('list/current')).data.signUps).map((raw) => new SignUpSheet(raw))
+        return (await http.get('signup/list/current')).data.signUps.map((raw) => new SignUpSheet(raw))
     }
 }

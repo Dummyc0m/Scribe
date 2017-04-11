@@ -24,6 +24,12 @@
         z-index: 100;
         flex: 0 0 auto;
     }
+    .no-select {
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
 </style>
 
 <style>
@@ -35,7 +41,7 @@
 </style>
 
 <template>
-    <div class="layout">
+    <div class="layout no-select">
         <div class="header">
             <slot name="header"></slot>
         </div>

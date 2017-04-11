@@ -18,13 +18,6 @@
         margin-right: 35px;
     }
 
-    .navbar {
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
-
     .full-screen-mask {
         height: 100%;
         width: 100%;
@@ -36,7 +29,7 @@
 </style>
 
 <template>
-    <div class="navbar">
+    <div>
         <Menu mode="horizontal" :active-name="activeName" :opened="opened" theme="dark" @on-select="selected"
               @on-open-change="onOpenChange" @click.native="clicked">
             <Menu-item name="root" class="navbar-logo">

@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
     [types.SET_USER_TOKEN] (state, { token }) {
-        http.defaults.headers = { Authorization: token.token }
+        http.defaults.headers = { Authorization: token ? token.token : null }
         state.token = token
     }
 }

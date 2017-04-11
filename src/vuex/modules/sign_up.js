@@ -22,7 +22,7 @@ const getters = {
 
 const actions = {
     async refreshOpenSignUpSheets ({ commit }) {
-        commit(types.SET_OPEN_SIGN_UP_SHEET, { currentPage: await api.listOpenSheet() })
+        commit(types.SET_OPEN_SIGN_UP_SHEET, { sheets: await api.listOpenSheet() })
     }
 }
 
