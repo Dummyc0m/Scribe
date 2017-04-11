@@ -5,7 +5,7 @@ import App from './App'
 import Vuex from 'vuex'
 import storeOptions from './vuex/store'
 import Router from 'vue-router'
-import routerOptions from './router'
+import routerOptions, {afterEach, beforeEach} from './router'
 import axios from 'axios'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
@@ -16,7 +16,7 @@ export const http = axios.create({
         Authorization: ''
     },
     transformRequest: [data => {
-        iView.LoadingBar.start()
+        // iView.LoadingBar.start()
         return data ? Object.keys(data).map(key => {
             return {key: key, value: data[key]}
         }).reduce((formData, entry) => {
@@ -25,16 +25,18 @@ export const http = axios.create({
         }, new FormData()) : data
     }],
     transformResponse: [data => {
-        iView.LoadingBar.finish()
-        return JSON.parse(data)
+        // iView.LoadingBar.finish()
+        return data ? JSON.parse(data) : data
     }]
 })
 
 Vue.use(Vuex)
-const store = new Vuex.Store(storeOptions)
+export const store = new Vuex.Store(storeOptions)
 
 Vue.use(Router)
-const router = new Router(routerOptions)
+export const router = new Router(routerOptions)
+router.beforeEach(beforeEach)
+router.afterEach(afterEach)
 
 Vue.use(iView)
 

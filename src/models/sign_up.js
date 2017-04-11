@@ -13,7 +13,7 @@ export class SignUpSheet {
 
     newSheet () {
         return this.eventGroups.reduce((acc, entry) => {
-            acc[entry.id] = -1
+            acc[entry.id] = '-1'
             return acc
         }, {})
     }

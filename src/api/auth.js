@@ -13,6 +13,9 @@ export default {
         return new ActionResult((await http.post('auth/register', { email, password })).data)
     },
     async signOut () {
-        throw new Error('Not Implemented')
+        await http.post('auth/logout')
+    },
+    async verify () {
+        return new UserToken((await http.get('auth/verify')).data)
     }
 }

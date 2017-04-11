@@ -6,16 +6,38 @@ const SignOutView = resolve => require([ '@/components/SignOutView' ], resolve)
 const SignUpListView = resolve => require([ '@/components/SignUpListView' ], resolve)
 const SignUpView = resolve => require([ '@/components/SignUpView' ], resolve)
 import iView from 'iview'
+import { store } from '../main'
+
+const publicRoutes = {
+    root: true,
+    timeline: true,
+    login: true
+}
+
+export const beforeEach = (to, from, next) => {
+    iView.LoadingBar.start()
+    if (!publicRoutes[to.name]) {
+        store.dispatch('verify').then(() => {
+            if (store.getters.authenticated) {
+                next()
+            } else {
+                iView.LoadingBar.finish()
+                next({
+                    name: 'login'
+                })
+            }
+        })
+    } else {
+        next()
+    }
+}
+
+export const afterEach = (to, from) => {
+    iView.LoadingBar.finish()
+}
 
 export default {
     // scrollBehavior: () => ({ y: 0 }),
-    beforeEach (to, from, next) {
-        iView.LoadingBar.start()
-        next()
-    },
-    afterEach (to, from, next) {
-        iView.LoadingBar.finish()
-    },
     routes: [
         {
             path: '/',

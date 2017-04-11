@@ -5,6 +5,10 @@
 
 
 
+
+
+
+
 <style scoped>
     .login-panel {
         padding: 10px 10px 0 10px;
@@ -13,40 +17,54 @@
 </style>
 
 <template>
-    <login-panel class="login-panel" @submit="onSubmit"></login-panel>
+    <login-panel class="login-panel" @submit="onSubmit" :signingIn="signingIn" ref="login_panel"></login-panel>
 </template>
 
 <script>
-    import LoginPanel from './login/LoginPanel'
+    import LoginPanel from './Login/LoginPanel'
     import api from '../api/auth'
 
     export default {
         components: {LoginPanel},
+        data () {
+            return {
+                signingIn: false
+            }
+        },
         methods: {
             onSubmit ({valid, email, password, register}) {
                 if (valid) {
                     const self = this
+                    this.signingIn = true
                     if (register) {
                         api.register(email, password)
                             .then((response) => {
                                 if (response.success) {
                                     self.$Message.success('Registration successful! Please check your inbox!')
+                                    self.$refs['login_panel'].refresh()
                                 } else {
-                                    this.$Message.error('Unknown Error ' + response.error)
+                                    this.$Message.error(response.error)
                                 }
-                            }).catch((exception) => {
-                                this.$Message.error('Unknown Error ' + exception)
+                                self.signingIn = false
+                            })
+                            .catch((exception) => {
+                                this.$Message.error(exception)
+                                self.signingIn = false
                             })
                     } else {
-                        this.$store.dispatch('authenticate', {email, password}).then(() => {
-                            self.$Message.success('Welcome back, ' + self.$store.getters.userToken.user.email.split('@')[0], 1, () => {
-                                self.$router.push({
-                                    name: 'root'
+                        this.$store.dispatch('authenticate', {email, password})
+                            .then(() => {
+                                self.$Message.success('Welcome back, ' + self.$store.getters.userToken.user.email.split('@')[0], 1, () => {
+                                    self.$router.push({
+                                        name: 'root'
+                                    })
                                 })
+                                self.signingIn = false
                             })
-                        }).catch((error) => {
-                            self.$Message.error('Unknown Error ' + error)
-                        })
+                            .catch((error) => {
+                                self.$Message.error(error)
+                                self.signingIn = false
+                            })
                     }
                 } else {
                     this.$Message.error('Please verify the inputs')

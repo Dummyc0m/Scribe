@@ -35,8 +35,13 @@
                 },
                 rule: {
                     password: [
-                        { required: true, message: 'Please enter the password', trigger: 'blur' },
-                        { type: 'string', min: 8, message: 'The password has to be at least 8 characters long', trigger: 'blur' }
+                        {required: true, message: 'Please enter the password', trigger: 'blur'},
+                        {
+                            type: 'string',
+                            min: 8,
+                            message: 'Required, minimum of 8 characters',
+                            trigger: 'blur'
+                        }
                     ]
                 }
             }

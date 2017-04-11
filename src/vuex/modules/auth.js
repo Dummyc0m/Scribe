@@ -18,7 +18,7 @@ const getters = {
         return state.token
     },
     authenticated (state) {
-        return state.token === null
+        return state.token !== null
     }
 }
 
@@ -27,7 +27,15 @@ const actions = {
         commit(types.SET_USER_TOKEN, { token: await api.authenticate(email, password) })
     },
     async signOut ({ commit }) {
+        await api.signOut()
         commit(types.SET_USER_TOKEN, { token: null })
+    },
+    async verify ({ commit }) {
+        try {
+            commit(types.SET_USER_TOKEN, { token: await api.verify() })
+        } catch (e) {
+            commit(types.SET_USER_TOKEN, { token: null })
+        }
     }
 }
 

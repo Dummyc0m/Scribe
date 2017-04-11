@@ -10,27 +10,30 @@
         text-align: center;
         margin: 10px;
     }
+    .button {
+        min-width: 200px;
+    }
 </style>
 
 <template>
     <div>
         <sign-up-notify v-if="openSignUpSheets.length !== 0" @click.native="onSignUpNotifyClick"></sign-up-notify>
         <div class="center">
-            <Button v-if="!currentPage.first" type="primary" :loading="eventLoading" @click="prev">
+            <Button v-if="!currentPage.first" type="primary" :loading="eventLoading" @click="prev" class="button">
                 <span v-if="!eventLoading">Previous Page</span>
                 <span v-else>Loading...</span>
             </Button>
         </div>
         <event-timeline class="time-line" :timeline="currentPage.events"></event-timeline>
         <div class="center">
-            <Button v-if="!currentPage.last" type="primary" :loading="eventLoading" @click="next">
+            <Button v-if="!currentPage.last" type="primary" :loading="eventLoading" @click="next" class="button">
             <span v-if="!eventLoading">Next Page</span>
             <span v-else>Loading...</span>
         </Button>
         </div>
     </div>
 </template>
-'
+
 <script>
     import EventTimeline from './Root/EventTimeline.vue'
     import SignUpNotify from './Root/SignUpNotify.vue'
@@ -79,7 +82,9 @@
         methods: {
             async updateEvents (page) {
                 await this.$store.dispatch('refreshEventPage', { page, size: 8 })
-                await this.$store.dispatch('refreshOpenSignUpSheets')
+                if (this.$store.getters.authenticated) {
+                    await this.$store.dispatch('refreshOpenSignUpSheets')
+                }
                 this.$el.scrollTop = 0
             },
             prev () {
