@@ -40,19 +40,28 @@
 </template>
 
 <script>
-    import {SignUpSheet} from '../../models/sign_up'
+    import {
+        EMPTY_SIGN_UP_SHEET,
+        EMPTY_SIGN_UP_SHEET_INSTANCE,
+        SignUpSheet,
+        SignUpSheetInstance
+    } from '../../models/sign_up'
 
     export default {
         props: {
             sheet: {
                 type: SignUpSheet,
-                required: true
+                default () { return EMPTY_SIGN_UP_SHEET }
+            },
+            sheetInstance: {
+                type: SignUpSheetInstance,
+                default () { return EMPTY_SIGN_UP_SHEET_INSTANCE }
             }
         },
         data () {
             return {
-                form: this.sheet.newSheet(),
-                rules: this.sheet.newRules()
+                form: this.sheetInstance.form,
+                rules: this.sheetInstance.rules
             }
         },
         methods: {
@@ -63,13 +72,15 @@
                 })
             },
             handleInput (id, event) {
-                this.form[id] = event
+                this.$store.dispatch('setCurrentSignUpSheetFormValue', { id, event })
             }
         },
         watch: {
-            sheet (val) {
-                this.form = val.newSheet()
-                this.rules = val.newRules()
+            sheetInstance (val) {
+                if (val) {
+                    this.form = val.form
+                    this.rules = val.rules
+                }
             }
         }
     }

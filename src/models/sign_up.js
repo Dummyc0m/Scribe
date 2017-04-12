@@ -11,15 +11,30 @@ export class SignUpSheet {
         this.eventGroups = json.events.map((element) => new EventGroup(element))
     }
 
-    newSheet () {
-        return this.eventGroups.reduce((acc, entry) => {
+    newInstance () {
+        return new SignUpSheetInstance(this)
+    }
+
+    instanceFrom (json) {
+        const sheetInstance = this.newInstance()
+        sheetInstance.form = this.eventGroups.reduce((acc, entry) => {
+            acc[entry.id] = json['sheet'][entry.id]
+            return acc
+        }, {})
+        return sheetInstance
+    }
+}
+
+export class SignUpSheetInstance {
+    constructor (sheet) {
+        this.id = sheet.id
+        this.name = sheet.name
+        this.status = sheet.status
+        this.form = sheet.eventGroups.reduce((acc, entry) => {
             acc[entry.id] = '-1'
             return acc
         }, {})
-    }
-
-    newRules () {
-        return this.eventGroups.reduce((acc, entry) => {
+        this.rules = sheet.eventGroups.reduce((acc, entry) => {
             acc[entry.id] = [{ required: true, message: 'Please select one of the options', trigger: 'blur' }]
             return acc
         }, {})
@@ -32,3 +47,6 @@ export const EMPTY_SIGN_UP_SHEET = new SignUpSheet({
     status: -1,
     events: []
 })
+
+export const EMPTY_SIGN_UP_SHEET_INSTANCE = EMPTY_SIGN_UP_SHEET.newInstance()
+

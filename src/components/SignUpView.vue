@@ -10,13 +10,12 @@
 </style>
 
 <template>
-    <sign-up-sheet :sheet="sheet" @submit="onSubmit" class="sign-up"></sign-up-sheet>
+    <sign-up-sheet :sheetInstance="currentSheetInstance" :sheet="currentSheet" @submit="onSubmit" class="sign-up"></sign-up-sheet>
 </template>
 
 <script>
     import SignUpSheet from './SignUp/SignUpSheet.vue'
     import {mapActions, mapGetters} from 'vuex'
-    import {EMPTY_SIGN_UP_SHEET} from '../models/sign_up'
 
     export default {
         components: {SignUpSheet},
@@ -26,31 +25,31 @@
             }
         },
         computed: {
-            sheet () {
-                const self = this
-                const sheet = this.openSignUpSheets.find((element) => element.id === self.id)
-                return sheet || EMPTY_SIGN_UP_SHEET
-            },
             ...mapGetters([
-                'openSignUpSheets'
+                'currentSheetInstance',
+                'currentSheet'
             ])
         },
         methods: {
             ...mapActions([
-                'refreshOpenSignUpSheets'
+                'submitCurrentSignUpSheetInstance',
+                'clearCurrentSignUpSheetInstance'
             ]),
+            refreshCurrentSignUpSheet (id) {
+                this.$store.dispatch('refreshCurrentSignUpSheet', { id })
+            },
             onSubmit (result) {
                 if (result.valid) {
                     const self = this
-                    console.log(JSON.stringify({
-                        id: this.sheet.id,
-                        sheet: result.form
-                    }))
-                    this.$Message.success('Saved', 2, () => {
-                        self.$Message.success('You may change it before the deadline', 3)
-                    })
-                    this.$router.push({
-                        name: 'root'
+                    this.submitCurrentSignUpSheetInstance().then(() => {
+                        self.clearCurrentSignUpSheetInstance().then(() => {
+                            self.$Message.success('Saved', 2, () => {
+                                self.$Message.success('You may change it before the deadline', 3)
+                            })
+                            self.$router.push({
+                                name: 'root'
+                            })
+                        })
                     })
                 } else {
                     this.$Message.error('Please complete the sheet')
@@ -59,7 +58,7 @@
         },
         created () {
             this.id = Number(this.$route.params.id)
-            this.refreshOpenSignUpSheets()
+            this.refreshCurrentSignUpSheet(this.id)
         }
     }
 </script>
