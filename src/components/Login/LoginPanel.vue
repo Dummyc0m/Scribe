@@ -4,18 +4,20 @@
 
 
 
+
 <style scoped>
     .input {
         min-width: 250px;
     }
 
     .button {
-        min-width: 200px;
+        min-width: 100px;
     }
 
     .group {
         display: flex;
         flex-flow: row;
+        align-items: center;
     }
 
     .register {
@@ -25,6 +27,10 @@
     .submit {
         flex: 2 1 auto;
     }
+
+    .register-switch {
+        margin: 0 5px 0 5px;
+    }
 </style>
 
 <template>
@@ -32,18 +38,20 @@
           @keyup.enter.native="handleSubmit('form')">
         <Form-item prop="email">
             <Input :disabled="signingIn" type="text" v-model="form.email" placeholder="Email" class="input">
-                <Icon type="ios-person-outline" slot="prepend"></Icon>
+            <Icon type="ios-person-outline" slot="prepend"></Icon>
             </Input>
         </Form-item>
         <Form-item prop="password">
             <Input :disabled="signingIn" type="password" v-model="form.password" placeholder="Password" class="input">
-                <Icon type="ios-locked-outline" slot="prepend"></Icon>
+            <Icon type="ios-locked-outline" slot="prepend"></Icon>
             </Input>
         </Form-item>
         <div class="group">
             <Form-item class="register">
-                New User?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <i-switch size="large" :disabled="signingIn" v-model="form.register">
+                New User?
+            </Form-item>
+            <Form-item class="register">
+                <i-switch size="large" :disabled="signingIn" v-model="form.register" class="register-switch">
                     <span slot="open">Yes</span>
                     <span slot="close">No</span>
                 </i-switch>
