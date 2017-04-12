@@ -88,16 +88,18 @@
                 }
             },
             clicked () {
-                if (this.$refs.submenu.opened) {
-                    this.$nextTick(() => {
-                        this.$refs.submenu.handleMouseleave()
-                        this.subMenuOpen = false
-                    })
-                } else {
-                    this.$nextTick(() => {
-                        this.$refs.submenu.handleMouseenter()
-                        this.subMenuOpen = true
-                    })
+                if (this.$refs.submenu) {
+                    if (this.$refs.submenu.opened) {
+                        this.$nextTick(() => {
+                            this.$refs.submenu.handleMouseleave()
+                            this.subMenuOpen = false
+                        })
+                    } else {
+                        this.$nextTick(() => {
+                            this.$refs.submenu.handleMouseenter()
+                            this.subMenuOpen = true
+                        })
+                    }
                 }
             }
         }

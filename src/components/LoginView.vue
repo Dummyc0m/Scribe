@@ -54,11 +54,10 @@
                     } else {
                         this.$store.dispatch('authenticate', {email, password})
                             .then(() => {
-                                self.$Message.success('Welcome back, ' + self.$store.getters.userToken.user.email.split('@')[0], 1, () => {
-                                    self.$router.push({
-                                        name: 'root'
-                                    })
+                                self.$router.push({
+                                    name: 'root'
                                 })
+                                self.$Message.success('Welcome back, ' + self.$store.getters.userToken.user.email.split('@')[0], 1)
                                 self.signingIn = false
                             })
                             .catch((error) => {
