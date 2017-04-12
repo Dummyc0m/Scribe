@@ -32,12 +32,12 @@
           @keyup.enter.native="handleSubmit('form')">
         <Form-item prop="email">
             <Input :disabled="signingIn" type="text" v-model="form.email" placeholder="Email" class="input">
-            <Icon type="ios-person-outline" slot="prepend"></Icon>
+                <Icon type="ios-person-outline" slot="prepend"></Icon>
             </Input>
         </Form-item>
         <Form-item prop="password">
             <Input :disabled="signingIn" type="password" v-model="form.password" placeholder="Password" class="input">
-            <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                <Icon type="ios-locked-outline" slot="prepend"></Icon>
             </Input>
         </Form-item>
         <div class="group">

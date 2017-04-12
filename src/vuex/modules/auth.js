@@ -36,6 +36,13 @@ const actions = {
         } catch (e) {
             commit(types.SET_USER_TOKEN, { token: null })
         }
+    },
+    async authenticateWithToken ({ commit }, { tokenString }) {
+        try {
+            commit(types.SET_USER_TOKEN, { token: await api.verifyWithToken(tokenString) })
+        } catch (e) {
+            commit(types.SET_USER_TOKEN, { token: null })
+        }
     }
 }
 

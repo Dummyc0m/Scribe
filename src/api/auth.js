@@ -17,5 +17,12 @@ export default {
     },
     async verify () {
         return new UserToken((await http.get('auth/verify')).data)
+    },
+    async verifyWithToken (tokenString) {
+        return new UserToken((await http.get('auth/verify', {
+            headers: {
+                Authorization: tokenString
+            }
+        })).data)
     }
 }

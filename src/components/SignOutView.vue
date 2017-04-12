@@ -11,7 +11,7 @@
 
 <template>
     <div class="panel">
-        <h2>You have been signed out.</h2>
+        <h2>You have been signed out</h2>
         <h2>Returning to the timeline...</h2>
     </div>
 </template>
