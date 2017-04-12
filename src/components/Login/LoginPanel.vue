@@ -42,7 +42,12 @@
         </Form-item>
         <div class="group">
             <Form-item class="register">
-                <Checkbox :disabled="signingIn" v-model="form.register">Register</Checkbox>
+                New User?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i-switch size="large" :disabled="signingIn" v-model="form.register">
+                    <span slot="open">Yes</span>
+                    <span slot="close">No</span>
+                </i-switch>
+                <!--<Checkbox :disabled="signingIn" v-model="form.register">Register</Checkbox>-->
             </Form-item>
             <Form-item class="submit">
                 <Button htmlType="submit" type="primary" :loading="signingIn" class="button">
