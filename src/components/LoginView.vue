@@ -17,7 +17,9 @@
 </style>
 
 <template>
-    <login-panel class="login-panel" @submit="onSubmit" :signingIn="signingIn" ref="login_panel"></login-panel>
+    <div class="desktop-adapt-flex desktop-adapt-flex-aligned desktop-adapt-flex-justified">
+        <login-panel class="login-panel desktop-adapt-item desktop-adapt" @submit="onSubmit" :signingIn="signingIn" ref="login_panel"></login-panel>
+    </div>
 </template>
 
 <script>

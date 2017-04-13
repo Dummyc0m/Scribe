@@ -1,7 +1,6 @@
 /**
 * Created by dummy on 4/6/17.
- */
-
+*/
 
 
 <style scoped>
@@ -15,14 +14,7 @@
 
     .footer {
         padding: 10px 0 10px;
-        flex: 0 1 auto;
-    }
-
-    .body {
-        background: #f5f7f9;
-        flex: 1 1 auto;
-        position: relative;
-        overflow-y: auto;
+        flex: 0 0 auto;
     }
 
     .header {
@@ -36,6 +28,49 @@
         -webkit-user-select: none;
         -ms-user-select: none;
     }
+
+    .content {
+        background: #f5f7f9;
+        flex: 1 1 auto;
+        position: relative;
+        overflow-y: auto;
+    }
+</style>
+
+<style>
+    .desktop-adapt {
+        max-width: 400px;
+    }
+
+    .desktop-adapt-flex {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    .desktop-adapt-flex-vert {
+        flex-flow: column;
+    }
+
+    .desktop-adapt-item {
+        flex: 1 1 auto;
+    }
+
+    .desktop-adapt-fixed {
+        flex: 0 0 auto;
+    }
+
+    .desktop-adapt-flex-aligned {
+        align-items: center;
+    }
+
+    .desktop-adapt-flex-justified {
+        justify-content: center;
+    }
+
+    .desktop-adapt-full-width {
+        width: 100%;
+    }
 </style>
 
 <style>
@@ -48,9 +83,15 @@
 
 <template>
     <div class="layout no-select">
-        <slot class="header" name="header"></slot>
-        <slot class="body" name="body"></slot>
-        <slot name="footer" class="footer"></slot>
+        <div class="header">
+            <slot name="header"></slot>
+        </div>
+        <div class="content desktop-adapt-flex">
+            <slot name="body"></slot>
+        </div>
+        <div class="footer">
+            <slot name="footer"></slot>
+        </div>
     </div>
 </template>
 

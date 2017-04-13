@@ -23,6 +23,6 @@ export default {
         } })).data)
     },
     async findSheetById (sheetId) {
-        return new SignUpSheet((await http.get(`signup/${sheetId}`)).data)
+        return new SignUpSheet((await http.get(`signup/find/${sheetId}`)).data)
     }
 }

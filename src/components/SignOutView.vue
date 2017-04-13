@@ -10,9 +10,11 @@
 </style>
 
 <template>
-    <div class="panel">
-        <h2>You have been signed out</h2>
-        <h2>Returning to the timeline...</h2>
+    <div class="panel desktop-adapt-flex desktop-adapt-flex-aligned desktop-adapt-flex-justified">
+        <div class="desktop-adapt-item desktop-adapt">
+            <h2>You have been signed out</h2>
+            <h2>Returning to the timeline...</h2>
+        </div>
     </div>
 </template>
 

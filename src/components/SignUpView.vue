@@ -10,7 +10,9 @@
 </style>
 
 <template>
-    <sign-up-sheet :sheetInstance="currentSheetInstance" :sheet="currentSheet" @submit="onSubmit" class="sign-up"></sign-up-sheet>
+    <div class="desktop-adapt-flex desktop-adapt-flex-aligned">
+        <sign-up-sheet :sheetInstance="currentSheetInstance" :sheet="currentSheet" @submit="onSubmit" class="sign-up desktop-adapt desktop-adapt-item"></sign-up-sheet>
+    </div>
 </template>
 
 <script>

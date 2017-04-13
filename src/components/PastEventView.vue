@@ -1,6 +1,6 @@
 /**
 * Created by dummy on 4/6/17.
- */
+*/
 
 <style scoped>
     .event-panel {
@@ -9,7 +9,9 @@
 </style>
 
 <template>
-    <past-event-panel class="event-panel" :records="records"></past-event-panel>
+    <div class="desktop-adapt-flex desktop-adapt-flex-justified">
+        <past-event-panel class="event-panel desktop-adapt-item desktop-adapt" :records="records"></past-event-panel>
+    </div>
 </template>
 
 <script>

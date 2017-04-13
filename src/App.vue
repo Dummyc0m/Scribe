@@ -2,13 +2,13 @@
     <div id="app">
         <layout>
             <nav-bar :username="name" slot="header" @select="onNavSelect"></nav-bar>
-            <div slot="body">
+            <div class="desktop-adapt-item" slot="body">
                 <transition name="opacity" mode="out-in">
                     <router-view></router-view>
                 </transition>
-                <copyright></copyright>
+                <!--<copyright></copyright>-->
             </div>
-            <!--<copyright slot="footer"></copyright>-->
+            <copyright slot="footer"></copyright>
         </layout>
     </div>
 </template>
@@ -55,5 +55,9 @@
     }
     .opacity-enter, .opacity-leave-to {
         opacity: 0;
+    }
+    .full-100 {
+        height: 100%;
+        width: 100%;
     }
 </style>

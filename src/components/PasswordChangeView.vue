@@ -10,7 +10,9 @@
 </style>
 
 <template>
-    <password-change-panel class="change-panel"></password-change-panel>
+    <div class="desktop-adapt-flex desktop-adapt-flex-aligned desktop-adapt-flex-justified">
+        <password-change-panel class="change-panel desktop-adapt-item desktop-adapt"></password-change-panel>
+    </div>
 </template>
 
 <script>

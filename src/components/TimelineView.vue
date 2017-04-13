@@ -6,30 +6,35 @@
     .time-line {
         padding: 0 10px 0 10px;
     }
-    .center {
-        text-align: center;
-        margin: 10px;
-    }
     .button {
         min-width: 200px;
+    }
+    .margin {
+        margin: 10px;
+    }
+    .center {
+        text-align: center;
+        width: 100%;
     }
 </style>
 
 <template>
-    <div>
-        <sign-up-notify v-if="openSignUpSheets.length !== 0" @click.native="onSignUpNotifyClick"></sign-up-notify>
-        <div class="center">
-            <Button v-if="!currentPage.first" type="primary" :loading="eventLoading" @click="prev" class="button">
-                <span v-if="!eventLoading">Previous Page</span>
-                <span v-else>Loading...</span>
-            </Button>
-        </div>
-        <event-timeline class="time-line" :timeline="currentPage.events"></event-timeline>
-        <div class="center">
-            <Button v-if="!currentPage.last" type="primary" :loading="eventLoading" @click="next" class="button">
-            <span v-if="!eventLoading">Next Page</span>
-            <span v-else>Loading...</span>
-        </Button>
+    <div class="desktop-adapt-flex desktop-adapt-flex-aligned desktop-adapt-flex-vert">
+        <sign-up-notify class="desktop-adapt-fixed desktop-adapt-full-width" v-if="openSignUpSheets.length !== 0" @click.native="onSignUpNotifyClick"></sign-up-notify>
+        <div class="desktop-adapt desktop-adapt-item desktop-adapt-full-width">
+            <div class="center margin">
+                <Button v-if="!currentPage.first" type="primary" :loading="eventLoading" @click="prev" class="button">
+                    <span v-if="!eventLoading">Previous Page</span>
+                    <span v-else>Loading...</span>
+                </Button>
+            </div>
+            <event-timeline class="time-line" :timeline="currentPage.events"></event-timeline>
+            <div class="center margin">
+                <Button v-if="!currentPage.last" type="primary" :loading="eventLoading" @click="next" class="button">
+                    <span v-if="!eventLoading">Next Page</span>
+                    <span v-else>Loading...</span>
+                </Button>
+            </div>
         </div>
     </div>
 </template>
