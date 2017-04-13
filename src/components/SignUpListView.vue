@@ -9,7 +9,7 @@
 </style>
 
 <template>
-    <div class="desktop-adapt-flex desktop-adapt-flex-aligned">
+    <div class="desktop-adapt-flex desktop-adapt-flex-justified">
         <sign-up-list :sheet="openSignUpSheets" @click="onClick" class="sign-up-list desktop-adapt desktop-adapt-item"></sign-up-list>
     </div>
 </template>
