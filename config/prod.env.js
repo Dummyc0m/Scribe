@@ -1,4 +1,4 @@
 module.exports = {
     NODE_ENV: '"production"',
-    SERVER_URL: '"https://check.guardiantech.com.cn/"'
+    SERVER_URL: '"https://api.aofactivities.com/"'
 }
