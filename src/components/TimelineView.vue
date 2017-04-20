@@ -10,7 +10,7 @@
         min-width: 200px;
     }
     .margin {
-        margin: 10px;
+        margin-top: 10px;
     }
     .center {
         text-align: center;
@@ -28,7 +28,7 @@
                     <span v-else>Loading...</span>
                 </Button>
             </div>
-            <event-timeline class="time-line" :timeline="currentPage.events"></event-timeline>
+            <event-timeline class="time-line margin" :timeline="currentPage.events"></event-timeline>
             <div class="center margin">
                 <Button v-if="!currentPage.last" type="primary" :loading="eventLoading" @click="next" class="button">
                     <span v-if="!eventLoading">Next Page</span>

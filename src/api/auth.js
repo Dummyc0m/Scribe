@@ -24,5 +24,8 @@ export default {
                 Authorization: tokenString
             }
         })).data)
+    },
+    async verifySignUpToken (token) {
+        await http.get('auth/verify-token?token=' + token)
     }
 }

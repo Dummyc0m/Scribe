@@ -71,6 +71,17 @@
                     this.$Message.error('Please verify the inputs')
                 }
             }
+        },
+        created () {
+            if (this.$route.query && this.$route.query['token']) {
+                const token = this.$route.query['token']
+                const self = this
+                api.verifySignUpToken(token).then(() => {
+                    self.$Message.success('Account Verified', 2)
+                }).catch((error) => {
+                    self.$Message.error(error)
+                })
+            }
         }
     }
 </script>
