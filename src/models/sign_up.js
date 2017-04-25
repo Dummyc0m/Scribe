@@ -8,7 +8,9 @@ export class SignUpSheet {
         this.id = json.id
         this.name = json.name
         this.status = json.status
-        this.eventGroups = json.events.map((element) => new EventGroup(element))
+        this.eventGroups = json.events.sort((x, y) => {
+            return x.weight - y.weight
+        }).map((element) => new EventGroup(element.eventGroup))
     }
 
     newInstance () {

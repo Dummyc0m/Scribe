@@ -1,6 +1,6 @@
 /**
 * Created by dummy on 4/12/17.
- */
+*/
 
 <style scoped>
     .panel {

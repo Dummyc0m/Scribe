@@ -5,7 +5,17 @@ import {Student} from './student'
 export class UserToken {
     constructor (json) {
         this.token = json.token
-        this.user = new User(json.user)
+        if (json.user) {
+            this.user = new User(json.user)
+            this.type = 'user'
+        } else {
+            this.user = new User({
+                email: json.student.email,
+                userLevel: 0,
+                student: json.student
+            })
+            this.type = 'student'
+        }
     }
 }
 

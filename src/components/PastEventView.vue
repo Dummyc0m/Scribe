@@ -31,6 +31,16 @@
                         events: [
                             {
                                 id: 0,
+                                name: 'Work in progress page, full of fake data'
+                            }
+                        ]
+                    },
+                    {
+                        id: 0,
+                        time: moment().format('X'),
+                        events: [
+                            {
+                                id: 0,
                                 name: 'walmart'
                             }
                         ]

@@ -20,7 +20,7 @@
 
 <template>
     <div class="desktop-adapt-flex desktop-adapt-flex-aligned desktop-adapt-flex-vert">
-        <sign-up-notify class="desktop-adapt-fixed desktop-adapt-full-width" v-if="openSignUpSheets.length !== 0" @click.native="onSignUpNotifyClick"></sign-up-notify>
+        <sign-up-notify class="desktop-adapt-fixed desktop-adapt-full-width" v-if="!teapot && openSignUpSheets.length !== 0" @click.native="onSignUpNotifyClick"></sign-up-notify>
         <div class="desktop-adapt desktop-adapt-item desktop-adapt-full-width">
             <div class="center margin">
                 <Button v-if="!currentPage.first" type="primary" :loading="eventLoading" @click="prev" class="button">
@@ -117,7 +117,8 @@
             ...mapGetters([
                 'currentPage',
                 'eventLoading',
-                'openSignUpSheets'
+                'openSignUpSheets',
+                'teapot'
             ]),
             page () {
                 return Number(this.$route.params.page)

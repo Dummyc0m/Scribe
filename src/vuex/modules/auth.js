@@ -1,14 +1,14 @@
 import * as types from '../mutation-types'
 import api from '../../api/auth'
-import { http } from '../../main'
+import {http} from '../../main'
 
 const state = {
     token: null
 }
 
 const mutations = {
-    [types.SET_USER_TOKEN] (state, { token }) {
-        http.defaults.headers = { Authorization: token ? token.token : null }
+    [types.SET_USER_TOKEN] (state, {token}) {
+        http.defaults.headers = {Authorization: token ? token.token : null}
         state.token = token
     }
 }
@@ -19,30 +19,29 @@ const getters = {
     },
     authenticated (state) {
         return state.token !== null
+    },
+    teapot (state) {
+        return state.token !== null ? state.token.user.student === null : true
     }
 }
 
 const actions = {
-    async authenticate ({ commit }, { email, password }) {
-        commit(types.SET_USER_TOKEN, { token: await api.authenticate(email, password) })
+    async authenticate ({commit}, {email, password}) {
+        commit(types.SET_USER_TOKEN, {token: await api.authenticate(email, password)})
     },
-    async signOut ({ commit }) {
+    async signOut ({commit}) {
         await api.signOut()
-        commit(types.SET_USER_TOKEN, { token: null })
+        commit(types.SET_USER_TOKEN, {token: null})
     },
-    async verify ({ commit }) {
+    async verify ({commit}) {
         try {
-            commit(types.SET_USER_TOKEN, { token: await api.verify() })
+            commit(types.SET_USER_TOKEN, {token: await api.verify()})
         } catch (e) {
-            commit(types.SET_USER_TOKEN, { token: null })
+            commit(types.SET_USER_TOKEN, {token: null})
         }
     },
-    async authenticateWithToken ({ commit }, { tokenString }) {
-        try {
-            commit(types.SET_USER_TOKEN, { token: await api.verifyWithToken(tokenString) })
-        } catch (e) {
-            commit(types.SET_USER_TOKEN, { token: null })
-        }
+    async authenticateWithToken ({commit}, {tokenString}) {
+        commit(types.SET_USER_TOKEN, {token: await api.verifyWithToken(tokenString)})
     }
 }
 

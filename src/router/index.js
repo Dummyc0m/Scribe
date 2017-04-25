@@ -20,10 +20,10 @@ export const beforeEach = (to, from, next) => {
     iView.LoadingBar.start()
     if (!publicRoutes[to.name]) {
         store.dispatch('verify').then(() => {
+            iView.LoadingBar.finish()
             if (store.getters.authenticated) {
                 next()
             } else {
-                iView.LoadingBar.finish()
                 next({
                     name: 'login'
                 })
