@@ -8,8 +8,8 @@ export class SignUpSheet {
         this.id = json.id
         this.name = json.name
         this.status = json.status
-        this.eventGroups = json.events.sort((x, y) => {
-            return x.weight - y.weight
+        this.eventGroups = json.entries.sort((x, y) => {
+            return y.weight - x.weight
         }).map((element) => new EventGroup(element.eventGroup))
     }
 
@@ -47,7 +47,7 @@ export const EMPTY_SIGN_UP_SHEET = new SignUpSheet({
     id: -1,
     name: '',
     status: -1,
-    events: []
+    entries: []
 })
 
 export const EMPTY_SIGN_UP_SHEET_INSTANCE = EMPTY_SIGN_UP_SHEET.newInstance()
