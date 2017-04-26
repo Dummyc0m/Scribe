@@ -75,5 +75,5 @@ Hello there! This is Yuanchu Xie.
 
 I have an offer to make:
 
-As I am graduating in the class of 2017, Peiqi and Yaotian will be maintaining this project next year. If you are familiar with technologies, including, but not limited to, Spring, Kotlin, Javascript, and/or native mobile apps, please contact check@master.dummyc0m.com and include "[FROM CONSOLE]" in the subject line.
+As I am graduating in the class of 2017, Peiqi and Yaotian will be maintaining this project next year. If you are familiar with technologies, including, but not limited to, Spring, Kotlin, Javascript, and native mobile apps, please contact check@master.dummyc0m.com and include "[FROM CONSOLE]" in the subject line.
 `)
